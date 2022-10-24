@@ -18,6 +18,13 @@ defmodule BasicWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    live "/exam_choices", ExamChoiceLive.Index, :index
+    live "/exam_choices/new", ExamChoiceLive.Index, :new
+    live "/exam_choices/:id/edit", ExamChoiceLive.Index, :edit
+
+    live "/exam_choices/:id", ExamChoiceLive.Show, :show
+    live "/exam_choices/:id/show/edit", ExamChoiceLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
