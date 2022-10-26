@@ -1,0 +1,51 @@
+<h1>Listing Exam choices</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.exam_choice_index_path(@socket, :index)}>
+    <.live_component
+      module={BasicWeb.ExamChoiceLive.FormComponent}
+      id={@exam_choice.id || :new}
+      title={@page_title}
+      action={@live_action}
+      exam_choice={@exam_choice}
+      return_to={Routes.exam_choice_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Correct</th>
+      <th>Wrong1</th>
+      <th>Wrong2</th>
+      <th>Wrong3</th>
+      <th>Explain</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="exam_choices">
+    <%= for exam_choice <- @exam_choices do %>
+      <tr id={"exam_choice-#{exam_choice.id}"}>
+        <td><%= exam_choice.title %></td>
+        <td><%= exam_choice.description %></td>
+        <td><%= exam_choice.correct %></td>
+        <td><%= exam_choice.wrong1 %></td>
+        <td><%= exam_choice.wrong2 %></td>
+        <td><%= exam_choice.wrong3 %></td>
+        <td><%= exam_choice.explain %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.exam_choice_show_path(@socket, :show, exam_choice) %></span>
+          <span><%= live_patch "Edit", to: Routes.exam_choice_index_path(@socket, :edit, exam_choice) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: exam_choice.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Exam choice", to: Routes.exam_choice_index_path(@socket, :new) %></span>

@@ -1,0 +1,56 @@
+<h1>Show Exam choice</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.exam_choice_show_path(@socket, :show, @exam_choice)}>
+    <.live_component
+      module={BasicWeb.ExamChoiceLive.FormComponent}
+      id={@exam_choice.id}
+      title={@page_title}
+      action={@live_action}
+      exam_choice={@exam_choice}
+      return_to={Routes.exam_choice_show_path(@socket, :show, @exam_choice)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @exam_choice.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @exam_choice.description %>
+  </li>
+
+  <li>
+    <strong>Correct:</strong>
+    <%= @exam_choice.correct %>
+  </li>
+
+  <li>
+    <strong>Wrong1:</strong>
+    <%= @exam_choice.wrong1 %>
+  </li>
+
+  <li>
+    <strong>Wrong2:</strong>
+    <%= @exam_choice.wrong2 %>
+  </li>
+
+  <li>
+    <strong>Wrong3:</strong>
+    <%= @exam_choice.wrong3 %>
+  </li>
+
+  <li>
+    <strong>Explain:</strong>
+    <%= @exam_choice.explain %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.exam_choice_show_path(@socket, :edit, @exam_choice), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.exam_choice_index_path(@socket, :index) %></span>
