@@ -1,4 +1,5 @@
-<h1>Listing Exam choices</h1>
+<!-- <h1>Listing Exam choices</h1> -->
+<h1>一覧（４択問題）</h1>
 
 <%= if @live_action in [:new, :edit] do %>
   <.modal return_to={Routes.exam_choice_index_path(@socket, :index)}>
@@ -16,6 +17,7 @@
 <table>
   <thead>
     <tr>
+<!--
       <th>Title</th>
       <th>Description</th>
       <th>Correct</th>
@@ -23,6 +25,16 @@
       <th>Wrong2</th>
       <th>Wrong3</th>
       <th>Explain</th>
+-->
+      <th>タイトル</th>
+      <th>問題文</th>
+      <th>選択肢＜正答＞</th>
+<!--
+      <th>選択肢＜誤答１＞</th>
+      <th>選択肢＜誤答２＞</th>
+      <th>選択肢＜誤答３＞</th>
+      <th>解説</th>
+-->
 
       <th></th>
     </tr>
@@ -32,20 +44,30 @@
       <tr id={"exam_choice-#{exam_choice.id}"}>
         <td><%= exam_choice.title %></td>
         <td><%= exam_choice.description %></td>
+<!--        <td style="vertical-align:center; text-align:left; white-space:pre-wrap; word-wrap:break-word"><%= exam_choice.description %></td>-->
         <td><%= exam_choice.correct %></td>
+<!--
         <td><%= exam_choice.wrong1 %></td>
         <td><%= exam_choice.wrong2 %></td>
         <td><%= exam_choice.wrong3 %></td>
-        <td><%= exam_choice.explain %></td>
+-->
+<!--        <td><%= exam_choice.explain %></td> -->
+<!--        <td style="vertical-align:center; text-align:left; white-space:pre-wrap; word-wrap:break-word"><%= exam_choice.explain %></td> -->
 
         <td>
-          <span><%= live_redirect "Show", to: Routes.exam_choice_show_path(@socket, :show, exam_choice) %></span>
+<!--
+         <span><%= live_redirect "Show", to: Routes.exam_choice_show_path(@socket, :show, exam_choice) %></span>
           <span><%= live_patch "Edit", to: Routes.exam_choice_index_path(@socket, :edit, exam_choice) %></span>
           <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: exam_choice.id, data: [confirm: "Are you sure?"] %></span>
+-->
+          <span><%= live_redirect "詳細", to: Routes.exam_choice_show_path(@socket, :show, exam_choice) %></span>
+          <span><%= live_patch "編集", to: Routes.exam_choice_index_path(@socket, :edit, exam_choice) %></span>
+          <span><%= link "削除", to: "#", phx_click: "delete", phx_value_id: exam_choice.id, data: [confirm: "削除しますか？"] %></span>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<span><%= live_patch "New Exam choice", to: Routes.exam_choice_index_path(@socket, :new) %></span>
+<!-- <span><%= live_patch "New Exam choice", to: Routes.exam_choice_index_path(@socket, :new) %></span> -->
+<span><%= live_patch "新規問題作成", to: Routes.exam_choice_index_path(@socket, :new) %></span>
