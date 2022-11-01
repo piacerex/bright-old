@@ -32,7 +32,8 @@ defmodule BasicWeb.ExamChoiceLive.FormComponent do
       {:ok, _exam_choice} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Exam choice updated successfully")
+#         |> put_flash(:info, "Exam choice updated successfully")
+         |> put_flash(:info, "編集できました")
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -45,7 +46,8 @@ defmodule BasicWeb.ExamChoiceLive.FormComponent do
       {:ok, _exam_choice} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Exam choice created successfully")
+#         |> put_flash(:info, "Exam choice created successfully")
+         |> put_flash(:info, "新規問題を登録しました")
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
