@@ -19,4 +19,20 @@ defmodule Basic.SkillsFixtures do
 
     skill
   end
+
+  @doc """
+  Generate a skill.
+  """
+  def skill_fixture(attrs \\ %{}) do
+    {:ok, skill} =
+      attrs
+      |> Enum.into(%{
+        exam_choice_id: 42,
+        material_id: 42,
+        name: "some name"
+      })
+      |> Basic.Skills.create_skill()
+
+    skill
+  end
 end

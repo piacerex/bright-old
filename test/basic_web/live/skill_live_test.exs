@@ -4,9 +4,9 @@ defmodule BasicWeb.SkillLiveTest do
   import Phoenix.LiveViewTest
   import Basic.SkillsFixtures
 
-  @create_attrs %{exam_choices_id: 42, materials_id: 42, name: "some name"}
-  @update_attrs %{exam_choices_id: 43, materials_id: 43, name: "some updated name"}
-  @invalid_attrs %{exam_choices_id: nil, materials_id: nil, name: nil}
+  @create_attrs %{exam_choice_id: 42, material_id: 42, name: "some name"}
+  @update_attrs %{exam_choice_id: 43, material_id: 43, name: "some updated name"}
+  @invalid_attrs %{exam_choice_id: nil, material_id: nil, name: nil}
 
   defp create_skill(_) do
     skill = skill_fixture()

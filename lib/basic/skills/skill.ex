@@ -3,8 +3,8 @@ defmodule Basic.Skills.Skill do
   import Ecto.Changeset
 
   schema "skills" do
-    field :exam_choices_id, :integer
-    field :materials_id, :integer
+    field :exam_choice_id, :integer
+    field :material_id, :integer
     field :name, :string
 
     timestamps()
@@ -13,7 +13,7 @@ defmodule Basic.Skills.Skill do
   @doc false
   def changeset(skill, attrs) do
     skill
-    |> cast(attrs, [:name, :exam_choices_id, :materials_id])
-    |> validate_required([:name, :exam_choices_id, :materials_id])
+    |> cast(attrs, [:name, :exam_choice_id, :material_id])
+    |> validate_required([:name, :exam_choice_id, :material_id])
   end
 end

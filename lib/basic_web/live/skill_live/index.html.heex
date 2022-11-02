@@ -17,8 +17,8 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Exam choices</th>
-      <th>Materials</th>
+      <th>Exam choice</th>
+      <th>Material</th>
 
       <th></th>
     </tr>
@@ -27,8 +27,8 @@
     <%= for skill <- @skills do %>
       <tr id={"skill-#{skill.id}"}>
         <td><%= skill.name %></td>
-        <td><%= skill.exam_choices_id %></td>
-        <td><%= skill.materials_id %></td>
+        <td><%= skill.exam_choice_id %></td>
+        <td><%= skill.material_id %></td>
 
         <td>
           <span><%= live_redirect "Show", to: Routes.skill_show_path(@socket, :show, skill) %></span>
