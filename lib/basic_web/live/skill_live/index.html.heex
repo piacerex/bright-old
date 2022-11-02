@@ -1,0 +1,43 @@
+<h1>Listing Skills</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.skill_index_path(@socket, :index)}>
+    <.live_component
+      module={BasicWeb.SkillLive.FormComponent}
+      id={@skill.id || :new}
+      title={@page_title}
+      action={@live_action}
+      skill={@skill}
+      return_to={Routes.skill_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Exam choices</th>
+      <th>Materials</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="skills">
+    <%= for skill <- @skills do %>
+      <tr id={"skill-#{skill.id}"}>
+        <td><%= skill.name %></td>
+        <td><%= skill.exam_choices_id %></td>
+        <td><%= skill.materials_id %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.skill_show_path(@socket, :show, skill) %></span>
+          <span><%= live_patch "Edit", to: Routes.skill_index_path(@socket, :edit, skill) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: skill.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Skill", to: Routes.skill_index_path(@socket, :new) %></span>

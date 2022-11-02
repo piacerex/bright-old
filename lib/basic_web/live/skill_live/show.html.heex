@@ -1,0 +1,36 @@
+<h1>Show Skill</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.skill_show_path(@socket, :show, @skill)}>
+    <.live_component
+      module={BasicWeb.SkillLive.FormComponent}
+      id={@skill.id}
+      title={@page_title}
+      action={@live_action}
+      skill={@skill}
+      return_to={Routes.skill_show_path(@socket, :show, @skill)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @skill.name %>
+  </li>
+
+  <li>
+    <strong>Exam choices:</strong>
+    <%= @skill.exam_choices_id %>
+  </li>
+
+  <li>
+    <strong>Materials:</strong>
+    <%= @skill.materials_id %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.skill_show_path(@socket, :edit, @skill), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.skill_index_path(@socket, :index) %></span>
