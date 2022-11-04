@@ -9,20 +9,24 @@
     phx-change="validate"
     phx-submit="save">
   
-    <%= label f, :name %>
+<!--    <%= label f, :name %> -->
+    <%= label f, :name, "スキル" %>
     <%= text_input f, :name %>
     <%= error_tag f, :name %>
   
-    <%= label f, :exam_choice_id %>
+<!--    <%= label f, :exam_choice_id %> -->
+    <%= label f, :exam_choice_id, "４択問題ID" %>
     <%= number_input f, :exam_choice_id %>
     <%= error_tag f, :exam_choice_id %>
   
-    <%= label f, :material_id %>
+<!--    <%= label f, :material_id %> -->
+    <%= label f, :material_id, "教材ID" %>
     <%= number_input f, :material_id %>
     <%= error_tag f, :material_id %>
   
     <div>
-      <%= submit "Save", phx_disable_with: "Saving..." %>
+<!--      <%= submit "Save", phx_disable_with: "Saving..." %> -->
+      <%= submit "保存", phx_disable_with: "Saving..." %>
     </div>
   </.form>
 </div>

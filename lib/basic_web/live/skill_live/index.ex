@@ -16,19 +16,22 @@ defmodule BasicWeb.SkillLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Skill")
+#    |> assign(:page_title, "Edit Skill")
+    |> assign(:page_title, "スキル編集")
     |> assign(:skill, Skills.get_skill!(id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Skill")
+#    |> assign(:page_title, "New Skill")
+    |> assign(:page_title, "新規スキル登録")
     |> assign(:skill, %Skill{})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Skills")
+#    |> assign(:page_title, "Listing Skills")
+    |> assign(:page_title, "スキル一覧")
     |> assign(:skill, nil)
   end
 

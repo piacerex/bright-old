@@ -1,4 +1,5 @@
-<h1>Show Skill</h1>
+<!-- <h1>Show Skill</h1> -->
+<h1>スキル詳細</h1>
 
 <%= if @live_action in [:edit] do %>
   <.modal return_to={Routes.skill_show_path(@socket, :show, @skill)}>
@@ -16,21 +17,28 @@
 <ul>
 
   <li>
-    <strong>Name:</strong>
+<!--    <strong>Name:</strong> -->
+    <strong>スキル:</strong>
     <%= @skill.name %>
   </li>
 
   <li>
-    <strong>Exam choice:</strong>
+<!--    <strong>Exam choice:</strong> -->
+    <strong>４択問題ID:</strong>
     <%= @skill.exam_choice_id %>
   </li>
 
   <li>
-    <strong>Material:</strong>
+<!--    <strong>Material:</strong> -->
+    <strong>教材ID:</strong>
     <%= @skill.material_id %>
   </li>
 
 </ul>
 
+<!--
 <span><%= live_patch "Edit", to: Routes.skill_show_path(@socket, :edit, @skill), class: "button" %></span> |
 <span><%= live_redirect "Back", to: Routes.skill_index_path(@socket, :index) %></span>
+-->
+<span><%= live_patch "編集", to: Routes.skill_show_path(@socket, :edit, @skill), class: "button" %></span> |
+<span><%= live_redirect "戻る", to: Routes.skill_index_path(@socket, :index) %></span>

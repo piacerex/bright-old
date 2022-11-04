@@ -16,6 +16,8 @@ defmodule BasicWeb.SkillLive.Show do
      |> assign(:skill, Skills.get_skill!(id))}
   end
 
-  defp page_title(:show), do: "Show Skill"
-  defp page_title(:edit), do: "Edit Skill"
+#  defp page_title(:show), do: "Show Skill"
+#  defp page_title(:edit), do: "Edit Skill"
+  defp page_title(:show), do: "スキル詳細"
+  defp page_title(:edit), do: "スキル編集"
 end

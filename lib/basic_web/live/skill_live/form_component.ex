@@ -32,7 +32,8 @@ defmodule BasicWeb.SkillLive.FormComponent do
       {:ok, _skill} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Skill updated successfully")
+#         |> put_flash(:info, "Skill updated successfully")
+         |> put_flash(:info, "編集できました")
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -45,7 +46,8 @@ defmodule BasicWeb.SkillLive.FormComponent do
       {:ok, _skill} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Skill created successfully")
+#         |> put_flash(:info, "Skill created successfully")
+         |> put_flash(:info, "新規スキルを登録しました")
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
