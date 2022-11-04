@@ -1,0 +1,41 @@
+<h1>Show Exam choice result</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.exam_choice_result_show_path(@socket, :show, @exam_choice_result)}>
+    <.live_component
+      module={BasicWeb.ExamChoiceResultLive.FormComponent}
+      id={@exam_choice_result.id}
+      title={@page_title}
+      action={@live_action}
+      exam_choice_result={@exam_choice_result}
+      return_to={Routes.exam_choice_result_show_path(@socket, :show, @exam_choice_result)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Account:</strong>
+    <%= @exam_choice_result.account_id %>
+  </li>
+
+  <li>
+    <strong>Exam count:</strong>
+    <%= @exam_choice_result.exam_count %>
+  </li>
+
+  <li>
+    <strong>Exam choice:</strong>
+    <%= @exam_choice_result.exam_choice_id %>
+  </li>
+
+  <li>
+    <strong>Pass:</strong>
+    <%= @exam_choice_result.pass %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.exam_choice_result_show_path(@socket, :edit, @exam_choice_result), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.exam_choice_result_index_path(@socket, :index) %></span>
