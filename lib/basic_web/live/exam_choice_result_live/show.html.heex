@@ -1,4 +1,5 @@
-<h1>Show Exam choice result</h1>
+<!-- <h1>Show Exam choice result</h1> -->
+<h1>試験結果詳細</h1>
 
 <%= if @live_action in [:edit] do %>
   <.modal return_to={Routes.exam_choice_result_show_path(@socket, :show, @exam_choice_result)}>
@@ -16,26 +17,37 @@
 <ul>
 
   <li>
-    <strong>Account:</strong>
+<!--    <strong>Account:</strong> -->
+    <strong>アカウントID:</strong>
     <%= @exam_choice_result.account_id %>
   </li>
 
   <li>
-    <strong>Exam count:</strong>
+<!--    <strong>Exam count:</strong> -->
+    <strong>受験回数:</strong>
     <%= @exam_choice_result.exam_count %>
   </li>
 
   <li>
-    <strong>Exam choice:</strong>
+<!--    <strong>Exam choice:</strong> -->
+    <strong>４択問題ID:</strong>
     <%= @exam_choice_result.exam_choice_id %>
   </li>
 
   <li>
-    <strong>Pass:</strong>
-    <%= @exam_choice_result.pass %>
+<!--    <strong>Pass:</strong> -->
+    <strong>合否:</strong>
+    <!-- <%= @exam_choice_result.pass %> -->
+    <%= if @exam_choice_result.pass == true do %>合格
+    <% else %>不合格
+    <% end %>
   </li>
 
 </ul>
 
+<!--
 <span><%= live_patch "Edit", to: Routes.exam_choice_result_show_path(@socket, :edit, @exam_choice_result), class: "button" %></span> |
 <span><%= live_redirect "Back", to: Routes.exam_choice_result_index_path(@socket, :index) %></span>
+-->
+<span><%= live_patch "編集", to: Routes.exam_choice_result_show_path(@socket, :edit, @exam_choice_result), class: "button" %></span> |
+<span><%= live_redirect "戻る", to: Routes.exam_choice_result_index_path(@socket, :index) %></span>

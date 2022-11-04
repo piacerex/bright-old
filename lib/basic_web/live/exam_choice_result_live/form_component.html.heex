@@ -9,24 +9,29 @@
     phx-change="validate"
     phx-submit="save">
   
-    <%= label f, :account_id %>
+<!--    <%= label f, :account_id %> -->
+    <%= label f, :account_id, "アカウントID" %>
     <%= number_input f, :account_id %>
     <%= error_tag f, :account_id %>
   
-    <%= label f, :exam_count %>
+<!--    <%= label f, :exam_count %> -->
+    <%= label f, :exam_count, "受験回数" %>
     <%= number_input f, :exam_count %>
     <%= error_tag f, :exam_count %>
   
-    <%= label f, :exam_choice_id %>
+<!--    <%= label f, :exam_choice_id %> -->
+    <%= label f, :exam_choice_id, "４択問題ID" %>
     <%= number_input f, :exam_choice_id %>
     <%= error_tag f, :exam_choice_id %>
   
-    <%= label f, :pass %>
+<!--    <%= label f, :pass %> -->
+    <%= label f, :pass, "合格" %>
     <%= checkbox f, :pass %>
     <%= error_tag f, :pass %>
   
     <div>
-      <%= submit "Save", phx_disable_with: "Saving..." %>
+<!--      <%= submit "Save", phx_disable_with: "Saving..." %> -->
+      <%= submit "保存", phx_disable_with: "Saving..." %>
     </div>
   </.form>
 </div>

@@ -16,6 +16,8 @@ defmodule BasicWeb.ExamChoiceResultLive.Show do
      |> assign(:exam_choice_result, ExamChoiceResults.get_exam_choice_result!(id))}
   end
 
-  defp page_title(:show), do: "Show Exam choice result"
-  defp page_title(:edit), do: "Edit Exam choice result"
+#  defp page_title(:show), do: "Show Exam choice result"
+#  defp page_title(:edit), do: "Edit Exam choice result"
+  defp page_title(:show), do: "試験結果詳細"
+  defp page_title(:edit), do: "試験結果編集"
 end

@@ -16,19 +16,22 @@ defmodule BasicWeb.ExamChoiceResultLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Exam choice result")
+#    |> assign(:page_title, "Edit Exam choice result")
+    |> assign(:page_title, "試験結果編集")
     |> assign(:exam_choice_result, ExamChoiceResults.get_exam_choice_result!(id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Exam choice result")
+#    |> assign(:page_title, "New Exam choice result")
+    |> assign(:page_title, "試験結果登録")
     |> assign(:exam_choice_result, %ExamChoiceResult{})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Exam choice results")
+#    |> assign(:page_title, "Listing Exam choice results")
+    |> assign(:page_title, "試験結果一覧")
     |> assign(:exam_choice_result, nil)
   end
 
