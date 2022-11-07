@@ -39,6 +39,13 @@ defmodule BasicWeb.Router do
 
     live "/exam_choice_results/:id", ExamChoiceResultLive.Show, :show
     live "/exam_choice_results/:id/show/edit", ExamChoiceResultLive.Show, :edit
+
+    live "/owned_skills", OwnedSkillLive.Index, :index
+    live "/owned_skills/new", OwnedSkillLive.Index, :new
+    live "/owned_skills/:id/edit", OwnedSkillLive.Index, :edit
+
+    live "/owned_skills/:id", OwnedSkillLive.Show, :show
+    live "/owned_skills/:id/show/edit", OwnedSkillLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

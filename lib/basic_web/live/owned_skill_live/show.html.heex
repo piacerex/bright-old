@@ -1,0 +1,71 @@
+<h1>Show Owned skill</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.owned_skill_show_path(@socket, :show, @owned_skill)}>
+    <.live_component
+      module={BasicWeb.OwnedSkillLive.FormComponent}
+      id={@owned_skill.id}
+      title={@page_title}
+      action={@live_action}
+      owned_skill={@owned_skill}
+      return_to={Routes.owned_skill_show_path(@socket, :show, @owned_skill)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Account:</strong>
+    <%= @owned_skill.account_id %>
+  </li>
+
+  <li>
+    <strong>Skill:</strong>
+    <%= @owned_skill.skill_id %>
+  </li>
+
+  <li>
+    <strong>Level:</strong>
+    <%= @owned_skill.level %>
+  </li>
+
+  <li>
+    <strong>Learned progress:</strong>
+    <%= @owned_skill.learned_progress %>
+  </li>
+
+  <li>
+    <strong>Evidence text:</strong>
+    <%= @owned_skill.evidence_text %>
+  </li>
+
+  <li>
+    <strong>Evidence url:</strong>
+    <%= @owned_skill.evidence_url %>
+  </li>
+
+  <li>
+    <strong>Exam score:</strong>
+    <%= @owned_skill.exam_score %>
+  </li>
+
+  <li>
+    <strong>Exam count:</strong>
+    <%= @owned_skill.exam_count %>
+  </li>
+
+  <li>
+    <strong>Learning limit:</strong>
+    <%= @owned_skill.learning_limit %>
+  </li>
+
+  <li>
+    <strong>Exam limit:</strong>
+    <%= @owned_skill.exam_limit %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.owned_skill_show_path(@socket, :edit, @owned_skill), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.owned_skill_index_path(@socket, :index) %></span>
