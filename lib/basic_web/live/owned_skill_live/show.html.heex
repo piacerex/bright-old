@@ -1,0 +1,97 @@
+<!-- <h1>Show Owned skill</h1> -->
+<h1>保有スキル詳細</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.owned_skill_show_path(@socket, :show, @owned_skill)}>
+    <.live_component
+      module={BasicWeb.OwnedSkillLive.FormComponent}
+      id={@owned_skill.id}
+      title={@page_title}
+      action={@live_action}
+      owned_skill={@owned_skill}
+      return_to={Routes.owned_skill_show_path(@socket, :show, @owned_skill)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+<!--    <strong>Account:</strong> -->
+    <strong>アカウントID:</strong>
+    <%= @owned_skill.account_id %>
+  </li>
+
+  <li>
+<!--    <strong>Skill:</strong> -->
+    <strong>スキルID:</strong>
+    <%= @owned_skill.skill_id %>
+  </li>
+
+  <li>
+<!--    <strong>Level:</strong> -->
+    <strong>レベル:</strong>
+<!--    <%= @owned_skill.level %> -->
+    <%= if @owned_skill.level == 0 do %>
+    <% else %>
+      <%= if @owned_skill.level == 1 do %>learned
+      <% else %>
+        <%= if @owned_skill.level == 2 do %>experienced
+          <% else %>
+            <%= if @owned_skill.level == 3 do %>committed
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </li>
+
+  <li>
+<!--    <strong>Learned progress:</strong> -->
+    <strong>学習済率:</strong>
+    <%= @owned_skill.learned_progress %>
+  </li>
+
+  <li>
+<!--    <strong>Evidence text:</strong> -->
+    <strong>エビデンス文章:</strong>
+    <%= @owned_skill.evidence_text %>
+  </li>
+
+  <li>
+<!--    <strong>Evidence url:</strong> -->
+    <strong>エビデンス画像:</strong>
+    <%= @owned_skill.evidence_url %>
+  </li>
+
+  <li>
+<!--    <strong>Exam score:</strong> -->
+    <strong>最終点数:</strong>
+    <%= @owned_skill.exam_score %>
+  </li>
+
+  <li>
+<!--    <strong>Exam count:</strong> -->
+    <strong>受験回数:</strong>
+    <%= @owned_skill.exam_count %>
+  </li>
+
+  <li>
+<!--    <strong>Learning limit:</strong> -->
+    <strong>学習期限日:</strong>
+    <%= @owned_skill.learning_limit %>
+  </li>
+
+  <li>
+<!--    <strong>Exam limit:</strong> -->
+    <strong>受験期限日:</strong>
+    <%= @owned_skill.exam_limit %>
+  </li>
+
+</ul>
+
+<!--
+<span><%= live_patch "Edit", to: Routes.owned_skill_show_path(@socket, :edit, @owned_skill), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.owned_skill_index_path(@socket, :index) %></span>
+-->
+<span><%= live_patch "編集", to: Routes.owned_skill_show_path(@socket, :edit, @owned_skill), class: "button" %></span> |
+<span><%= live_redirect "戻る", to: Routes.owned_skill_index_path(@socket, :index) %></span>

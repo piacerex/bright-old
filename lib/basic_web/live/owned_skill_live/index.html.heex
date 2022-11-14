@@ -1,0 +1,90 @@
+<!-- <h1>Listing Owned skills</h1> -->
+<h1>保有スキル一覧</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.owned_skill_index_path(@socket, :index)}>
+    <.live_component
+      module={BasicWeb.OwnedSkillLive.FormComponent}
+      id={@owned_skill.id || :new}
+      title={@page_title}
+      action={@live_action}
+      owned_skill={@owned_skill}
+      owned_level={@owned_level}
+      return_to={Routes.owned_skill_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+<!--
+      <th>Account</th>
+      <th>Skill</th>
+      <th>Level</th>
+      <th>Learned progress</th>
+      <th>Evidence text</th>
+      <th>Evidence url</th>
+      <th>Exam score</th>
+      <th>Exam count</th>
+      <th>Learning limit</th>
+      <th>Exam limit</th>
+-->
+      <th>アカウントID</th>
+      <th>スキルID</th>
+      <th>レベル</th>
+      <th>学習済率</th>
+      <th>Evidence text</th>
+      <th>Evidence url</th>
+      <th>最終点数</th>
+      <th>受験回数</th>
+      <th>学習期限日</th>
+      <th>受験期限日</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="owned_skills">
+    <%= for owned_skill <- @owned_skills do %>
+      <tr id={"owned_skill-#{owned_skill.id}"}>
+        <td><%= owned_skill.account_id %></td>
+        <td><%= owned_skill.skill_id %></td>
+        <td>
+<!--        <%= owned_skill.level %> -->
+          <%= if owned_skill.level == 0 do %>
+          <% else %>
+            <%= if owned_skill.level == 1 do %>learned
+            <% else %>
+              <%= if owned_skill.level == 2 do %>experienced
+                <% else %>
+                  <%= if owned_skill.level == 3 do %>committed
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </td>
+        <td><%= owned_skill.learned_progress %></td>
+        <td><%= owned_skill.evidence_text %></td>
+        <td><%= owned_skill.evidence_url %></td>
+        <td><%= owned_skill.exam_score %></td>
+        <td><%= owned_skill.exam_count %></td>
+        <td><%= owned_skill.learning_limit %></td>
+        <td><%= owned_skill.exam_limit %></td>
+
+        <td>
+<!--
+          <span><%= live_redirect "Show", to: Routes.owned_skill_show_path(@socket, :show, owned_skill) %></span>
+          <span><%= live_patch "Edit", to: Routes.owned_skill_index_path(@socket, :edit, owned_skill) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: owned_skill.id, data: [confirm: "Are you sure?"] %></span>
+-->
+          <span><%= live_redirect "詳細", to: Routes.owned_skill_show_path(@socket, :show, owned_skill) %></span>
+          <span><%= live_patch "編集", to: Routes.owned_skill_index_path(@socket, :edit, owned_skill) %></span>
+          <span><%= link "削除", to: "#", phx_click: "delete", phx_value_id: owned_skill.id, data: [confirm: "削除しますか？"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- <span><%= live_patch "New Owned skill", to: Routes.owned_skill_index_path(@socket, :new) %></span> -->
+<span><%= live_patch "保有スキル新規登録", to: Routes.owned_skill_index_path(@socket, :new) %></span>
