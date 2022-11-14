@@ -10,7 +10,7 @@ defmodule BasicWeb.OwnedSkillLive.FormComponent do
     {:ok,
      socket
      |> assign(assigns)
-     |> assign(:owned_level, owned_skill.level)
+     |> assign(:owned_mark, owned_skill.mark)
      |> assign(:changeset, changeset)}
   end
 

@@ -29,16 +29,16 @@
   </li>
 
   <li>
-<!--    <strong>Level:</strong> -->
-    <strong>レベル:</strong>
-<!--    <%= @owned_skill.level %> -->
-    <%= if @owned_skill.level == 0 do %>
+<!--    <strong>Mark:</strong> -->
+    <strong>習熟度:</strong>
+<!--    <%= @owned_skill.mark %> -->
+    <%= if @owned_skill.mark == 0 do %>
     <% else %>
-      <%= if @owned_skill.level == 1 do %>learned
+      <%= if @owned_skill.mark == 1 do %>learned
       <% else %>
-        <%= if @owned_skill.level == 2 do %>experienced
+        <%= if @owned_skill.mark == 2 do %>experienced
           <% else %>
-            <%= if @owned_skill.level == 3 do %>committed
+            <%= if @owned_skill.mark == 3 do %>committed
           <% end %>
         <% end %>
       <% end %>

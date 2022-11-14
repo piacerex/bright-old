@@ -10,7 +10,7 @@ defmodule BasicWeb.OwnedSkillLive.Index do
     {:ok,
       socket
       |> assign(:owned_skills, list_owned_skills())
-      |> assign(:owned_level, 0)
+      |> assign(:owned_mark, 0)
     }
   end
 
