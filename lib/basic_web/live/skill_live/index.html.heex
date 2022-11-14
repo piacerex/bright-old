@@ -1,0 +1,55 @@
+<!-- <h1>Listing Skills</h1> -->
+<h1>スキル一覧</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.skill_index_path(@socket, :index)}>
+    <.live_component
+      module={BasicWeb.SkillLive.FormComponent}
+      id={@skill.id || :new}
+      title={@page_title}
+      action={@live_action}
+      skill={@skill}
+      return_to={Routes.skill_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+<!--
+      <th>Name</th>
+      <th>Exam choice</th>
+      <th>Material</th>
+-->
+      <th>スキル</th>
+      <th>４択問題ID</th>
+      <th>教材ID</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="skills">
+    <%= for skill <- @skills do %>
+      <tr id={"skill-#{skill.id}"}>
+        <td><%= skill.name %></td>
+        <td><%= skill.exam_choice_id %></td>
+        <td><%= skill.material_id %></td>
+
+        <td>
+<!--
+          <span><%= live_redirect "Show", to: Routes.skill_show_path(@socket, :show, skill) %></span>
+          <span><%= live_patch "Edit", to: Routes.skill_index_path(@socket, :edit, skill) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: skill.id, data: [confirm: "Are you sure?"] %></span>
+-->
+          <span><%= live_redirect "詳細", to: Routes.skill_show_path(@socket, :show, skill) %></span>
+          <span><%= live_patch "編集", to: Routes.skill_index_path(@socket, :edit, skill) %></span>
+          <span><%= link "削除", to: "#", phx_click: "delete", phx_value_id: skill.id, data: [confirm: "削除しますか？"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- <span><%= live_patch "New Skill", to: Routes.skill_index_path(@socket, :new) %></span> -->
+<span><%= live_patch "新規スキル登録", to: Routes.skill_index_path(@socket, :new) %></span>
