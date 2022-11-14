@@ -1,0 +1,63 @@
+<!-- <h1>Listing Exam choice results</h1> -->
+<h1>試験結果一覧</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.exam_choice_result_index_path(@socket, :index)}>
+    <.live_component
+      module={BasicWeb.ExamChoiceResultLive.FormComponent}
+      id={@exam_choice_result.id || :new}
+      title={@page_title}
+      action={@live_action}
+      exam_choice_result={@exam_choice_result}
+      return_to={Routes.exam_choice_result_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+<!--
+      <th>Account</th>
+      <th>Exam count</th>
+      <th>Exam choice</th>
+      <th>Pass</th>
+-->
+      <th>アカウントID</th>
+      <th>受験回数</th>
+      <th>４択問題ID</th>
+      <th>合否</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="exam_choice_results">
+    <%= for exam_choice_result <- @exam_choice_results do %>
+      <tr id={"exam_choice_result-#{exam_choice_result.id}"}>
+        <td><%= exam_choice_result.account_id %></td>
+        <td><%= exam_choice_result.exam_count %></td>
+        <td><%= exam_choice_result.exam_choice_id %></td>
+<!--        <td><%= exam_choice_result.pass %></td> -->
+        <td>
+          <%= if exam_choice_result.pass == true do %>合格
+          <% else %>不合格
+          <% end %>
+        </td>
+
+        <td>
+<!--
+          <span><%= live_redirect "Show", to: Routes.exam_choice_result_show_path(@socket, :show, exam_choice_result) %></span>
+          <span><%= live_patch "Edit", to: Routes.exam_choice_result_index_path(@socket, :edit, exam_choice_result) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: exam_choice_result.id, data: [confirm: "Are you sure?"] %></span>
+-->
+          <span><%= live_redirect "詳細", to: Routes.exam_choice_result_show_path(@socket, :show, exam_choice_result) %></span>
+          <span><%= live_patch "編集", to: Routes.exam_choice_result_index_path(@socket, :edit, exam_choice_result) %></span>
+          <span><%= link "削除", to: "#", phx_click: "delete", phx_value_id: exam_choice_result.id, data: [confirm: "削除しますか？"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- <span><%= live_patch "New Exam choice result", to: Routes.exam_choice_result_index_path(@socket, :new) %></span> -->
+<span><%= live_patch "新規試験結果登録", to: Routes.exam_choice_result_index_path(@socket, :new) %></span>
