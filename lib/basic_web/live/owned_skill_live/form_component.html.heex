@@ -20,9 +20,9 @@
     <%= error_tag f, :skill_id %>
   
 <!--    <%= label f, :level %> -->
-    <%= label f, :level, "レベル" %><% :yukari %>
+    <%= label f, :level, "レベル" %>
 <!--    <%= number_input f, :level %> -->
-    <%= select f, :level, ["（―）": 0, "learned（△）": 1, "experienced（〇）": 2, "commited（◎）": 3], selected: @owned_level %>
+    <%= select f, :level, ["（―）": 0, "learned（△）": 1, "experienced（〇）": 2, "commited（◎）": 3], selected: @owned_mark %>
     <%= error_tag f, :level %>
   
 <!--    <%= label f, :learned_progress %> -->

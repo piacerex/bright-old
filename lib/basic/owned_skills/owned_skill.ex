@@ -11,7 +11,7 @@ defmodule Basic.OwnedSkills.OwnedSkill do
     field :exam_score, :integer
     field :learned_progress, :float
     field :learning_limit, :date
-    field :level, :integer
+    field :mark, :integer
     field :skill_id, :integer
 
     timestamps()
@@ -20,7 +20,7 @@ defmodule Basic.OwnedSkills.OwnedSkill do
   @doc false
   def changeset(owned_skill, attrs) do
     owned_skill
-    |> cast(attrs, [:account_id, :skill_id, :level, :learned_progress, :evidence_text, :evidence_url, :exam_score, :exam_count, :learning_limit, :exam_limit])
-    |> validate_required([:account_id, :skill_id, :level, :learned_progress, :evidence_text, :evidence_url, :exam_score, :exam_count, :learning_limit, :exam_limit])
+    |> cast(attrs, [:account_id, :skill_id, :mark, :learned_progress, :evidence_text, :evidence_url, :exam_score, :exam_count, :learning_limit, :exam_limit])
+    |> validate_required([:account_id, :skill_id, :mark, :learned_progress, :evidence_text, :evidence_url, :exam_score, :exam_count, :learning_limit, :exam_limit])
   end
 end
