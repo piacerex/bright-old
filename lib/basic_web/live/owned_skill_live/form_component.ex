@@ -10,6 +10,7 @@ defmodule BasicWeb.OwnedSkillLive.FormComponent do
     {:ok,
      socket
      |> assign(assigns)
+     |> assign(:owned_level, owned_skill.level)
      |> assign(:changeset, changeset)}
   end
 
@@ -32,7 +33,8 @@ defmodule BasicWeb.OwnedSkillLive.FormComponent do
       {:ok, _owned_skill} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Owned skill updated successfully")
+#         |> put_flash(:info, "Owned skill updated successfully")
+         |> put_flash(:info, "編集できました")
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -45,7 +47,8 @@ defmodule BasicWeb.OwnedSkillLive.FormComponent do
       {:ok, _owned_skill} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Owned skill created successfully")
+#         |> put_flash(:info, "Owned skill created successfully")
+         |> put_flash(:info, "新規登録できました")
          |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->

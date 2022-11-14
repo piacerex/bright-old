@@ -16,6 +16,8 @@ defmodule BasicWeb.OwnedSkillLive.Show do
      |> assign(:owned_skill, OwnedSkills.get_owned_skill!(id))}
   end
 
-  defp page_title(:show), do: "Show Owned skill"
-  defp page_title(:edit), do: "Edit Owned skill"
+#  defp page_title(:show), do: "Show Owned skill"
+#  defp page_title(:edit), do: "Edit Owned skill"
+  defp page_title(:show), do: "保有スキル詳細"
+  defp page_title(:edit), do: "保有スキル編集"
 end
