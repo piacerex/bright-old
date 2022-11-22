@@ -7,6 +7,7 @@ defmodule BasicWeb.OwnedSkillLive.Index do
   @impl true
   def mount(_params, _session, socket) do
 #    {:ok, assign(socket, :owned_skills, list_owned_skills())}
+
     {:ok,
       socket
       |> assign(:owned_skills, list_owned_skills())
@@ -16,6 +17,7 @@ defmodule BasicWeb.OwnedSkillLive.Index do
 
   @impl true
   def handle_params(params, _url, socket) do
+IO.puts("************handle_params**************")
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
 
@@ -50,5 +52,16 @@ defmodule BasicWeb.OwnedSkillLive.Index do
 
   defp list_owned_skills do
     OwnedSkills.list_owned_skills()
+  end
+
+  @impl true
+  def handle_event("validate", params, socket) do
+IO.puts("--------handle_event params--------")
+IO.inspect params
+IO.puts("--------handle_event socket--------")
+# IO.inspect socket
+# IO.puts("--------handle_event--------")
+
+    {:noreply, assign(socket, :owned_skills, list_owned_skills())}
   end
 end

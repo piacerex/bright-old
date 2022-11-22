@@ -15,6 +15,8 @@
   </.modal>
 <% end %>
 
+  <%= form_for :edit, "#", [phx_change: "validate"], fn f -> %>
+<%= inspect f %>
 <table>
   <thead>
     <tr>
@@ -47,8 +49,16 @@
   <tbody id="owned_skills">
     <%= for owned_skill <- @owned_skills do %>
       <tr id={"owned_skill-#{owned_skill.id}"}>
-        <td><%= owned_skill.account_id %></td>
-        <td><%= owned_skill.skill_id %></td>
+<!--        <td><%= owned_skill.account_id %></td> -->
+        <td>
+          <%= number_input f, :account_id, value: owned_skill.account_id %>
+          <%= error_tag f, :account_id %>
+        </td>
+<!--        <td><%= owned_skill.skill_id %></td> -->
+        <td>
+          <%= number_input f, :skill_id, value: owned_skill.skill_id %>
+          <%= error_tag f, :skill_id %>
+        </td>
         <td>
 <!--        <%= owned_skill.mark %> -->
           <%= if owned_skill.mark == 0 do %>
@@ -85,6 +95,8 @@
     <% end %>
   </tbody>
 </table>
+
+  <% end %>
 
 <!-- <span><%= live_patch "New Owned skill", to: Routes.owned_skill_index_path(@socket, :new) %></span> -->
 <span><%= live_patch "保有スキル新規登録", to: Routes.owned_skill_index_path(@socket, :new) %></span>
