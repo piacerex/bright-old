@@ -17,7 +17,6 @@ defmodule BasicWeb.OwnedSkillLive.Index do
 
   @impl true
   def handle_params(params, _url, socket) do
-IO.puts("************handle_params**************")
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
 
@@ -54,14 +53,47 @@ IO.puts("************handle_params**************")
     OwnedSkills.list_owned_skills()
   end
 
+# ADD START
   @impl true
   def handle_event("validate", params, socket) do
-IO.puts("--------handle_event params--------")
-IO.inspect params
-IO.puts("--------handle_event socket--------")
-# IO.inspect socket
-# IO.puts("--------handle_event--------")
-
     {:noreply, assign(socket, :owned_skills, list_owned_skills())}
   end
+
+  def handle_event("save", params, socket) do
+    save_owned_skills(socket, params)
+  end
+
+  defp save_owned_skills(socket, owned_skills_params) do
+    Enum.map(0..length(owned_skills_params["edit"]["id"])-1, fn(n) ->                  
+      case OwnedSkills.update_owned_skill(Enum.at(socket.assigns.owned_skills, n),
+                                          %{} |> Map.put("id", Enum.at(owned_skills_params["edit"]["id"], n))
+                                              |> Map.put("account_id", Enum.at(owned_skills_params["edit"]["account_id"], n))
+                                              |> Map.put("evidence_text", Enum.at(owned_skills_params["edit"]["evidence_text"], n))
+                                              |> Map.put("evidence_url", Enum.at(owned_skills_params["edit"]["evidence_url"], n))
+                                              |> Map.put("exam_count", Enum.at(owned_skills_params["edit"]["exam_count"], n))
+                                              |> Map.put("exam_limit", Enum.at(owned_skills_params["edit"]["exam_limit"], 3*n)
+                                                                       |> Map.merge(Enum.at(owned_skills_params["edit"]["exam_limit"], 3*n+1))
+                                                                       |> Map.merge(Enum.at(owned_skills_params["edit"]["exam_limit"], 3*n+2)))
+                                              |> Map.put("exam_score", Enum.at(owned_skills_params["edit"]["exam_score"], n))
+                                              |> Map.put("learned_progress", Enum.at(owned_skills_params["edit"]["learned_progress"], n))
+                                              |> Map.put("learning_limit", Enum.at(owned_skills_params["edit"]["learning_limit"], 3*n)
+                                                                           |> Map.merge(Enum.at(owned_skills_params["edit"]["learning_limit"], 3*n+1))
+                                                                           |> Map.merge(Enum.at(owned_skills_params["edit"]["learning_limit"], 3*n+2)))
+                                              |> Map.put("mark", Enum.at(owned_skills_params["edit"]["mark"], n))
+                                              |> Map.put("skill_id", Enum.at(owned_skills_params["edit"]["skill_id"], n))
+                                         ) do
+        {:ok, _owned_skill} ->
+          {:noreply, socket}
+
+        {:error, %Ecto.Changeset{} = changeset} ->
+          {:noreply, assign(socket, :owned_skills, list_owned_skills())}
+      end
+    end)
+
+    {:noreply,
+    socket
+    |> put_flash(:info, "編集できました")
+    |> assign(:owned_skills, list_owned_skills())}
+  end
+# ADD END
 end
