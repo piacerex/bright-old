@@ -15,6 +15,7 @@
   </.modal>
 <% end %>
 
+<.form let={f} for={:edit} phx-change="validate" phx-submit="save">
 <table>
   <thead>
     <tr>
@@ -30,16 +31,20 @@
       <th>Learning limit</th>
       <th>Exam limit</th>
 -->
+      <tr>
       <th>アカウントID</th>
       <th>スキルID</th>
       <th>習熟度</th>
       <th>学習済率</th>
-      <th>Evidence text</th>
-      <th>Evidence url</th>
       <th>最終点数</th>
       <th>受験回数</th>
+      </tr>
+      <tr>
+      <th>Evidence text</th>
+      <th>Evidence url</th>
       <th>学習期限日</th>
       <th>受験期限日</th>
+      </tr>
 
       <th></th>
     </tr>
@@ -47,10 +52,22 @@
   <tbody id="owned_skills">
     <%= for owned_skill <- @owned_skills do %>
       <tr id={"owned_skill-#{owned_skill.id}"}>
-        <td><%= owned_skill.account_id %></td>
-        <td><%= owned_skill.skill_id %></td>
+      <tr>
+<!-- get id -->
+        <%= hidden_input f, :dummy, name: "edit[id][]", value: owned_skill.id %>
+<!--        <td><%= owned_skill.account_id %></td> -->
+        <td>
+          <%= number_input f, :dummy, name: "edit[account_id][]", value: owned_skill.account_id %>
+          <%= error_tag f, :account_id %>
+        </td>
+<!--        <td><%= owned_skill.skill_id %></td> -->
+        <td>
+          <%= number_input f, :dummy, name: "edit[skill_id][]", value: owned_skill.skill_id %>
+          <%= error_tag f, :skill_id %>
+        </td>
         <td>
 <!--        <%= owned_skill.mark %> -->
+<!--
           <%= if owned_skill.mark == 0 do %>
           <% else %>
             <%= if owned_skill.mark == 1 do %>learned
@@ -62,14 +79,47 @@
               <% end %>
             <% end %>
           <% end %>
+-->
+          <%= select f, :dummy, ["（―）": 0, "learned（△）": 1, "experienced（〇）": 2, "commited（◎）": 3], selected: owned_skill.mark, name: "edit[mark][]" %>
+          <%= error_tag f, :mark %>
         </td>
-        <td><%= owned_skill.learned_progress %></td>
-        <td><%= owned_skill.evidence_text %></td>
-        <td><%= owned_skill.evidence_url %></td>
-        <td><%= owned_skill.exam_score %></td>
-        <td><%= owned_skill.exam_count %></td>
-        <td><%= owned_skill.learning_limit %></td>
-        <td><%= owned_skill.exam_limit %></td>
+<!--        <td><%= owned_skill.learned_progress %></td> -->
+        <td>
+          <%= number_input f, :dummy, name: "edit[learned_progress][]", value: owned_skill.learned_progress %>
+          <%= error_tag f, :learned_progress %>
+        </td>
+<!--        <td><%= owned_skill.exam_score %></td> -->
+        <td>
+          <%= number_input f, :dummy, name: "edit[exam_score][]", value: owned_skill.exam_score %>
+          <%= error_tag f, :exam_score %>
+        </td>
+<!--        <td><%= owned_skill.exam_count %></td> -->
+        <td>
+          <%= number_input f, :dummy, name: "edit[exam_count][]", value: owned_skill.exam_count %>
+          <%= error_tag f, :exam_count %>
+        </td>
+        </tr>
+        <tr>
+<!--        <td><%= owned_skill.evidence_text %></td> -->
+        <td>
+          <%= text_input f, :dummy, name: "edit[evidence_text][]", value: owned_skill.evidence_text %>
+          <%= error_tag f, :evidence_text %>
+        </td>
+<!--        <td><%= owned_skill.evidence_url %></td> -->
+        <td>
+          <%= text_input f, :dummy, name: "edit[evidence_url][]", value: owned_skill.evidence_url %>
+          <%= error_tag f, :evidence_url %>
+        </td>
+<!--        <td><%= owned_skill.learning_limit %></td> -->
+        <td>
+          <%= date_select f, :dummy, name: "edit[learning_limit][]", value: owned_skill.learning_limit %>
+          <%= error_tag f, :learning_limit %>
+        </td>
+<!--        <td><%= owned_skill.exam_limit %></td> -->
+        <td>
+          <%= date_select f, :dummy, name: "edit[exam_limit][]", value: owned_skill.exam_limit %>
+          <%= error_tag f, :exam_limit %>
+        </td>
 
         <td>
 <!--
@@ -81,10 +131,15 @@
           <span><%= live_patch "編集", to: Routes.owned_skill_index_path(@socket, :edit, owned_skill) %></span>
           <span><%= link "削除", to: "#", phx_click: "delete", phx_value_id: owned_skill.id, data: [confirm: "削除しますか？"] %></span>
         </td>
+        </tr>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= submit "全件保存", phx_disable_with: "Saving..." %>
+
+</.form>
 
 <!-- <span><%= live_patch "New Owned skill", to: Routes.owned_skill_index_path(@socket, :new) %></span> -->
 <span><%= live_patch "保有スキル新規登録", to: Routes.owned_skill_index_path(@socket, :new) %></span>
