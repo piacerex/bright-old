@@ -1,0 +1,47 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="last_sheet_assesments_ts-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+<!--    <%= label f, :account_id %> -->
+    <%= label f, :account_id, "アカウントID" %>
+    <%= number_input f, :account_id %>
+    <%= error_tag f, :account_id %>
+  
+<!--    <%= label f, :sheet_id %> -->
+    <%= label f, :sheet_id, "スキルシートID" %>
+    <%= number_input f, :sheet_id %>
+    <%= error_tag f, :sheet_id %>
+  
+<!--    <%= label f, :sheet_learned_rate %> -->
+    <%= label f, :sheet_learned_rate, "スキル学習済率" %>
+    <%= number_input f, :sheet_learned_rate, step: "any" %>
+    <%= error_tag f, :sheet_learned_rate %>
+  
+<!--    <%= label f, :sheet_evidence_rate %> -->
+    <%= label f, :sheet_evidence_rate, "エビデンス完備率" %>
+    <%= number_input f, :sheet_evidence_rate, step: "any" %>
+    <%= error_tag f, :sheet_evidence_rate %>
+  
+<!--    <%= label f, :sheet_experienced_rate %> -->
+    <%= label f, :sheet_experienced_rate, "経験スキル率" %>
+    <%= number_input f, :sheet_experienced_rate, step: "any" %>
+    <%= error_tag f, :sheet_experienced_rate %>
+  
+<!--    <%= label f, :sheet_committed_rate %> -->
+    <%= label f, :sheet_committed_rate, "コミットスキル率" %>
+    <%= number_input f, :sheet_committed_rate, step: "any" %>
+    <%= error_tag f, :sheet_committed_rate %>
+  
+    <div>
+<!--      <%= submit "Save", phx_disable_with: "Saving..." %> -->
+      <%= submit "保存", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>
