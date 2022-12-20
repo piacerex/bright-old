@@ -1,0 +1,27 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="sheet-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+<!--    <%= label f, :name %> -->
+    <%= label f, :name, "シート名" %>
+    <%= text_input f, :name %>
+    <%= error_tag f, :name %>
+  
+<!--    <%= label f, :level %> -->
+    <%= label f, :level, "レベル" %>
+    <%= number_input f, :level %>
+    <%= error_tag f, :level %>
+  
+    <div>
+<!--      <%= submit "Save", phx_disable_with: "Saving..." %> -->
+      <%= submit "保存", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>
