@@ -1,0 +1,54 @@
+<!-- <h1>Listing Sheet skills</h1> -->
+<h1>シートスキル一覧</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.sheet_skill_index_path(@socket, :index)}>
+    <.live_component
+      module={BasicWeb.SheetSkillLive.FormComponent}
+      id={@sheet_skill.id || :new}
+      title={@page_title}
+      action={@live_action}
+      sheet_skill={@sheet_skill}
+      return_to={Routes.sheet_skill_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+<!--
+      <th>Sheet</th>
+      <th>Skill</th>
+-->
+      <th>シートID</th>
+      <th>スキルID</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="sheet_skills">
+    <%= for sheet_skill <- @sheet_skills do %>
+      <tr id={"sheet_skill-#{sheet_skill.id}"}>
+        <td><%= sheet_skill.sheet_id %></td>
+        <td><%= sheet_skill.skill_id %></td>
+
+        <td>
+<!--
+          <span><%= live_redirect "Show", to: Routes.sheet_skill_show_path(@socket, :show, sheet_skill) %></span>
+          <span><%= live_patch "Edit", to: Routes.sheet_skill_index_path(@socket, :edit, sheet_skill) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: sheet_skill.id, data: [confirm: "Are you sure?"] %></span>
+-->
+          <span><%= live_redirect "詳細", to: Routes.sheet_skill_show_path(@socket, :show, sheet_skill) %></span>
+          <span><%= live_patch "編集", to: Routes.sheet_skill_index_path(@socket, :edit, sheet_skill) %></span>
+          <span><%= link "削除", to: "#", phx_click: "delete", phx_value_id: sheet_skill.id, data: [confirm: "削除しますか？"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!--
+<span><%= live_patch "New Sheet skill", to: Routes.sheet_skill_index_path(@socket, :new) %></span>
+-->
+<span><%= live_patch "新規作成", to: Routes.sheet_skill_index_path(@socket, :new) %></span>

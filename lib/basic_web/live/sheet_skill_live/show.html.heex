@@ -1,0 +1,38 @@
+<!-- <h1>Show Sheet skill</h1> -->
+<h1>シートスキル詳細</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.sheet_skill_show_path(@socket, :show, @sheet_skill)}>
+    <.live_component
+      module={BasicWeb.SheetSkillLive.FormComponent}
+      id={@sheet_skill.id}
+      title={@page_title}
+      action={@live_action}
+      sheet_skill={@sheet_skill}
+      return_to={Routes.sheet_skill_show_path(@socket, :show, @sheet_skill)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+<!--    <strong>Sheet:</strong> -->
+    <strong>シートID:</strong>
+    <%= @sheet_skill.sheet_id %>
+  </li>
+
+  <li>
+<!--    <strong>Skill:</strong> -->
+    <strong>スキルID:</strong>
+    <%= @sheet_skill.skill_id %>
+  </li>
+
+</ul>
+
+<!--
+<span><%= live_patch "Edit", to: Routes.sheet_skill_show_path(@socket, :edit, @sheet_skill), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.sheet_skill_index_path(@socket, :index) %></span>
+-->
+<span><%= live_patch "編集", to: Routes.sheet_skill_show_path(@socket, :edit, @sheet_skill), class: "button" %></span> |
+<span><%= live_redirect "戻る", to: Routes.sheet_skill_index_path(@socket, :index) %></span>
