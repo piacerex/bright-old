@@ -1,0 +1,52 @@
+<!-- <h1>Listing Sheets</h1> -->
+<h1>シート一覧</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.sheet_index_path(@socket, :index)}>
+    <.live_component
+      module={BasicWeb.SheetLive.FormComponent}
+      id={@sheet.id || :new}
+      title={@page_title}
+      action={@live_action}
+      sheet={@sheet}
+      return_to={Routes.sheet_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+<!--
+      <th>Name</th>
+      <th>Level</th>
+-->
+      <th>シート名</th>
+      <th>レベル</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="sheets">
+    <%= for sheet <- @sheets do %>
+      <tr id={"sheet-#{sheet.id}"}>
+        <td><%= sheet.name %></td>
+        <td><%= sheet.level %></td>
+
+        <td>
+<!--
+          <span><%= live_redirect "Show", to: Routes.sheet_show_path(@socket, :show, sheet) %></span>
+          <span><%= live_patch "Edit", to: Routes.sheet_index_path(@socket, :edit, sheet) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: sheet.id, data: [confirm: "Are you sure?"] %></span>
+-->
+          <span><%= live_redirect "詳細", to: Routes.sheet_show_path(@socket, :show, sheet) %></span>
+          <span><%= live_patch "編集", to: Routes.sheet_index_path(@socket, :edit, sheet) %></span>
+          <span><%= link "削除", to: "#", phx_click: "delete", phx_value_id: sheet.id, data: [confirm: "削除しますか？"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- <span><%= live_patch "New Sheet", to: Routes.sheet_index_path(@socket, :new) %></span> -->
+<span><%= live_patch "新規作成", to: Routes.sheet_index_path(@socket, :new) %></span>

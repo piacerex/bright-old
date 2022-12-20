@@ -53,6 +53,13 @@ defmodule BasicWeb.Router do
 
     live "/last_sheet_assesments_tss/:id", LastSheetAssesmentsTSLive.Show, :show
     live "/last_sheet_assesments_tss/:id/show/edit", LastSheetAssesmentsTSLive.Show, :edit
+
+    live "/sheets", SheetLive.Index, :index
+    live "/sheets/new", SheetLive.Index, :new
+    live "/sheets/:id/edit", SheetLive.Index, :edit
+
+    live "/sheets/:id", SheetLive.Show, :show
+    live "/sheets/:id/show/edit", SheetLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

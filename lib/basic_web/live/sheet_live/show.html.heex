@@ -1,0 +1,38 @@
+<!-- <h1>Show Sheet</h1> -->
+<h1>シート詳細</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.sheet_show_path(@socket, :show, @sheet)}>
+    <.live_component
+      module={BasicWeb.SheetLive.FormComponent}
+      id={@sheet.id}
+      title={@page_title}
+      action={@live_action}
+      sheet={@sheet}
+      return_to={Routes.sheet_show_path(@socket, :show, @sheet)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+<!--    <strong>Name:</strong> -->
+    <strong>シート名:</strong>
+    <%= @sheet.name %>
+  </li>
+
+  <li>
+<!--    <strong>Level:</strong> -->
+    <strong>レベル:</strong>
+    <%= @sheet.level %>
+  </li>
+
+</ul>
+
+<!--
+<span><%= live_patch "Edit", to: Routes.sheet_show_path(@socket, :edit, @sheet), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.sheet_index_path(@socket, :index) %></span>
+-->
+<span><%= live_patch "編集", to: Routes.sheet_show_path(@socket, :edit, @sheet), class: "button" %></span> |
+<span><%= live_redirect "戻る", to: Routes.sheet_index_path(@socket, :index) %></span>
