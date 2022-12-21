@@ -1,0 +1,50 @@
+<!-- <h1>Show Project assign</h1> -->
+<h1>プロジェクトアサイン詳細</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.project_assign_show_path(@socket, :show, @project_assign)}>
+    <.live_component
+      module={BasicWeb.ProjectAssignLive.FormComponent}
+      id={@project_assign.id}
+      title={@page_title}
+      action={@live_action}
+      project_assign={@project_assign}
+      return_to={Routes.project_assign_show_path(@socket, :show, @project_assign)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+<!--    <strong>Project:</strong> -->
+    <strong>プロジェクトID:</strong>
+    <%= @project_assign.project_id %>
+  </li>
+
+  <li>
+<!--    <strong>Account:</strong> -->
+    <strong>アカウントID:</strong>
+    <%= @project_assign.account_id %>
+  </li>
+
+  <li>
+<!--    <strong>Last assesments id at assigned:</strong> -->
+    <strong>最終アセスメントID:</strong>
+    <%= @project_assign.last_assesments_id_at_assigned %>
+  </li>
+
+  <li>
+<!--    <strong>Reward level:</strong> -->
+    <strong>報酬レベルID:</strong>
+    <%= @project_assign.reward_level_id %>
+  </li>
+
+</ul>
+
+<!--
+<span><%= live_patch "Edit", to: Routes.project_assign_show_path(@socket, :edit, @project_assign), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.project_assign_index_path(@socket, :index) %></span>
+-->
+<span><%= live_patch "編集", to: Routes.project_assign_show_path(@socket, :edit, @project_assign), class: "button" %></span> |
+<span><%= live_redirect "戻る", to: Routes.project_assign_index_path(@socket, :index) %></span>

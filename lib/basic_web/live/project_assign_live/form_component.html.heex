@@ -1,0 +1,37 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="project_assign-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+<!--    <%= label f, :project_id %> -->
+    <%= label f, :project_id, "プロジェクトID" %>
+    <%= number_input f, :project_id %>
+    <%= error_tag f, :project_id %>
+  
+<!--    <%= label f, :account_id %> -->
+    <%= label f, :account_id, "アカウントID" %>
+    <%= number_input f, :account_id %>
+    <%= error_tag f, :account_id %>
+  
+<!--    <%= label f, :last_assesments_id_at_assigned %> -->
+    <%= label f, :last_assesments_id_at_assigned, "最終アセスメントID" %>
+    <%= number_input f, :last_assesments_id_at_assigned %>
+    <%= error_tag f, :last_assesments_id_at_assigned %>
+  
+<!--    <%= label f, :reward_level_id %> -->
+    <%= label f, :reward_level_id, "報酬レベルID" %>
+    <%= number_input f, :reward_level_id %>
+    <%= error_tag f, :reward_level_id %>
+  
+    <div>
+<!--      <%= submit "Save", phx_disable_with: "Saving..." %> -->
+      <%= submit "保存", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>
