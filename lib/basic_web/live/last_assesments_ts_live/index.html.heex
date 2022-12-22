@@ -1,0 +1,64 @@
+<!-- <h1>Listing Last assesments tss</h1> -->
+<h1>最終アセスメント（アカウント）一覧</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.last_assesments_ts_index_path(@socket, :index)}>
+    <.live_component
+      module={BasicWeb.LastAssesmentsTSLive.FormComponent}
+      id={@last_assesments_ts.id || :new}
+      title={@page_title}
+      action={@live_action}
+      last_assesments_ts={@last_assesments_ts}
+      return_to={Routes.last_assesments_ts_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+<!--
+      <th>Account</th>
+      <th>Ts last sheet assesments ids</th>
+      <th>Account learned rate</th>
+      <th>Account evidence rate</th>
+      <th>Account experienced rate</th>
+      <th>Account committed rate</th>
+-->
+      <th>アカウントID</th>
+      <th>最終アセスメントID群</th>
+      <th>スキル学習済率</th>
+      <th>エビデンス完備率</th>
+      <th>経験スキル率</th>
+      <th>コミットスキル率</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="last_assesments_tss">
+    <%= for last_assesments_ts <- @last_assesments_tss do %>
+      <tr id={"last_assesments_ts-#{last_assesments_ts.id}"}>
+        <td><%= last_assesments_ts.account_id %></td>
+        <td><%= last_assesments_ts.ts_last_sheet_assesments_ids %></td>
+        <td><%= last_assesments_ts.account_learned_rate %></td>
+        <td><%= last_assesments_ts.account_evidence_rate %></td>
+        <td><%= last_assesments_ts.account_experienced_rate %></td>
+        <td><%= last_assesments_ts.account_committed_rate %></td>
+
+        <td>
+<!--
+          <span><%= live_redirect "Show", to: Routes.last_assesments_ts_show_path(@socket, :show, last_assesments_ts) %></span>
+          <span><%= live_patch "Edit", to: Routes.last_assesments_ts_index_path(@socket, :edit, last_assesments_ts) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: last_assesments_ts.id, data: [confirm: "Are you sure?"] %></span>
+-->
+          <span><%= live_redirect "詳細", to: Routes.last_assesments_ts_show_path(@socket, :show, last_assesments_ts) %></span>
+          <span><%= live_patch "編集", to: Routes.last_assesments_ts_index_path(@socket, :edit, last_assesments_ts) %></span>
+          <span><%= link "削除", to: "#", phx_click: "delete", phx_value_id: last_assesments_ts.id, data: [confirm: "削除しますか？"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- <span><%= live_patch "New Last assesments ts", to: Routes.last_assesments_ts_index_path(@socket, :new) %></span> -->
+<span><%= live_patch "新規作成", to: Routes.last_assesments_ts_index_path(@socket, :new) %></span>

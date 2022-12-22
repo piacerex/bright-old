@@ -1,0 +1,47 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="last_assesments_ts-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+<!--    <%= label f, :account_id %> -->
+    <%= label f, :account_id, "アカウントID" %>
+    <%= number_input f, :account_id %>
+    <%= error_tag f, :account_id %>
+  
+<!--    <%= label f, :ts_last_sheet_assesments_ids %> -->
+    <%= label f, :ts_last_sheet_assesments_ids, "最終アセスメントID群" %>
+    <%= text_input f, :ts_last_sheet_assesments_ids %>
+    <%= error_tag f, :ts_last_sheet_assesments_ids %>
+  
+<!--    <%= label f, :account_learned_rate %> -->
+    <%= label f, :account_learned_rate, "スキル学習済率" %>
+    <%= number_input f, :account_learned_rate, step: "any" %>
+    <%= error_tag f, :account_learned_rate %>
+  
+<!--    <%= label f, :account_evidence_rate %> -->
+    <%= label f, :account_evidence_rate, "エビデンス完備率" %>
+    <%= number_input f, :account_evidence_rate, step: "any" %>
+    <%= error_tag f, :account_evidence_rate %>
+  
+<!--    <%= label f, :account_experienced_rate %> -->
+    <%= label f, :account_experienced_rate, "経験スキル率" %>
+    <%= number_input f, :account_experienced_rate, step: "any" %>
+    <%= error_tag f, :account_experienced_rate %>
+  
+<!--    <%= label f, :account_committed_rate %> -->
+    <%= label f, :account_committed_rate, "コミットスキル率" %>
+    <%= number_input f, :account_committed_rate, step: "any" %>
+    <%= error_tag f, :account_committed_rate %>
+  
+    <div>
+<!--      <%= submit "Save", phx_disable_with: "Saving..." %> -->
+      <%= submit "保存", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>

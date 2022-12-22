@@ -1,0 +1,62 @@
+<!-- <h1>Show Last assesments ts</h1> -->
+<h1>最終アセスメント（アカウント）詳細</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.last_assesments_ts_show_path(@socket, :show, @last_assesments_ts)}>
+    <.live_component
+      module={BasicWeb.LastAssesmentsTSLive.FormComponent}
+      id={@last_assesments_ts.id}
+      title={@page_title}
+      action={@live_action}
+      last_assesments_ts={@last_assesments_ts}
+      return_to={Routes.last_assesments_ts_show_path(@socket, :show, @last_assesments_ts)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+<!--    <strong>Account:</strong> -->
+    <strong>アカウントID:</strong>
+    <%= @last_assesments_ts.account_id %>
+  </li>
+
+  <li>
+<!--    <strong>Ts last sheet assesments ids:</strong> -->
+    <strong>最終アセスメントID群:</strong>
+    <%= @last_assesments_ts.ts_last_sheet_assesments_ids %>
+  </li>
+
+  <li>
+<!--    <strong>Account learned rate:</strong> -->
+    <strong>スキル学習済率:</strong>
+    <%= @last_assesments_ts.account_learned_rate %>
+  </li>
+
+  <li>
+<!--    <strong>Account evidence rate:</strong> -->
+    <strong>エビデンス完備率:</strong>
+    <%= @last_assesments_ts.account_evidence_rate %>
+  </li>
+
+  <li>
+<!--    <strong>Account experienced rate:</strong> -->
+    <strong>経験スキル率:</strong>
+    <%= @last_assesments_ts.account_experienced_rate %>
+  </li>
+
+  <li>
+<!--    <strong>Account committed rate:</strong> -->
+    <strong>コミットスキル率:</strong>
+    <%= @last_assesments_ts.account_committed_rate %>
+  </li>
+
+</ul>
+
+<!--
+<span><%= live_patch "Edit", to: Routes.last_assesments_ts_show_path(@socket, :edit, @last_assesments_ts), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.last_assesments_ts_index_path(@socket, :index) %></span>
+-->
+<span><%= live_patch "編集", to: Routes.last_assesments_ts_show_path(@socket, :edit, @last_assesments_ts), class: "button" %></span> |
+<span><%= live_redirect "戻る", to: Routes.last_assesments_ts_index_path(@socket, :index) %></span>
