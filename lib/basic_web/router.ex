@@ -74,6 +74,13 @@ defmodule BasicWeb.Router do
 
     live "/project_assigns/:id", ProjectAssignLive.Show, :show
     live "/project_assigns/:id/show/edit", ProjectAssignLive.Show, :edit
+
+    live "/last_assesments_tss", LastAssesmentsTSLive.Index, :index
+    live "/last_assesments_tss/new", LastAssesmentsTSLive.Index, :new
+    live "/last_assesments_tss/:id/edit", LastAssesmentsTSLive.Index, :edit
+
+    live "/last_assesments_tss/:id", LastAssesmentsTSLive.Show, :show
+    live "/last_assesments_tss/:id/show/edit", LastAssesmentsTSLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
