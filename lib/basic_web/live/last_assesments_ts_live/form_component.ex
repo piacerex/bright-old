@@ -28,8 +28,9 @@ defmodule BasicWeb.LastAssesmentsTSLive.FormComponent do
   end
 
   defp save_last_assesments_ts(socket, :edit, last_assesments_ts_params) do
-    case LastAssesmentsTSs.update_last_assesments_ts(socket.assigns.last_assesments_ts, last_assesments_ts_params) do
-      {:ok, _last_assesments_ts} ->
+#    case LastAssesmentsTSs.update_last_assesments_ts(socket.assigns.last_assesments_ts, last_assesments_ts_params) do
+    case LastAssesmentsTSs.create_last_assesments_ts(last_assesments_ts_params) do
+    {:ok, _last_assesments_ts} ->
         {:noreply,
          socket
 #         |> put_flash(:info, "Last assesments ts updated successfully")

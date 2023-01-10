@@ -44,6 +44,7 @@ defmodule BasicWeb.LastAssesmentsTSLive.Index do
   end
 
   defp list_last_assesments_tss do
-    LastAssesmentsTSs.list_last_assesments_tss()
+#    LastAssesmentsTSs.list_last_assesments_tss()
+    LastAssesmentsTSs.list_last_assesments_tss_per_account()
   end
 end

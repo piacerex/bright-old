@@ -101,4 +101,27 @@ defmodule Basic.LastAssesmentsTSs do
   def change_last_assesments_ts(%LastAssesmentsTS{} = last_assesments_ts, attrs \\ %{}) do
     LastAssesmentsTS.changeset(last_assesments_ts, attrs)
   end
+
+# ADD START
+  def list_last_assesments_tss_per_account do
+# データのあるアカウントIDを取得
+#    Enum.uniq(Enum.map(0..length(list)-1, fn(n) -> Enum.at(list, n).account_id end))
+#    [1, 2] account_id
+# inserted_at降順、リスト先頭のデータのみ取得
+#    query = from last_assesments_tss in LastAssesmentsTS,
+#            order_by: [desc: last_assesments_tss.inserted_at]
+#            limit: 1,
+#            where: last_assesments_tss.account_id == ^account_id
+    list = Repo.all(LastAssesmentsTS)
+    account_ids = Enum.uniq(Enum.map(0..length(list)-1, fn(n) -> Enum.at(list, n).account_id end))
+
+    Enum.map(0..length(account_ids)-1, fn(n) ->
+                                          query = from( last_assesments_tss in LastAssesmentsTS,
+                                                        order_by: [desc: last_assesments_tss.inserted_at],
+                                                        limit: 1,
+                                                        where: last_assesments_tss.account_id == ^Enum.at(account_ids, n))
+                                          List.first(Repo.all(query))
+    end)
+  end
+# ADD END
 end
