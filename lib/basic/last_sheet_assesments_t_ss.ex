@@ -101,4 +101,14 @@ defmodule Basic.LastSheetAssesmentsTSs do
   def change_last_sheet_assesments_ts(%LastSheetAssesmentsTS{} = last_sheet_assesments_ts, attrs \\ %{}) do
     LastSheetAssesmentsTS.changeset(last_sheet_assesments_ts, attrs)
   end
+
+  # ADD START
+  def list_last_sheet_assesments_tss_per_sheet do
+    query = from( last_sheet_assesments_tss in LastSheetAssesmentsTS,
+                  distinct: [last_sheet_assesments_tss.sheet_id, last_sheet_assesments_tss.account_id],
+                  order_by: [desc: last_sheet_assesments_tss.inserted_at]
+                )
+    Repo.all(query)
+  end
+  # ADD END
 end

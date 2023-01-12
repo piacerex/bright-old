@@ -28,7 +28,8 @@ defmodule BasicWeb.LastSheetAssesmentsTSLive.FormComponent do
   end
 
   defp save_last_sheet_assesments_ts(socket, :edit, last_sheet_assesments_ts_params) do
-    case LastSheetAssesmentsTSs.update_last_sheet_assesments_ts(socket.assigns.last_sheet_assesments_ts, last_sheet_assesments_ts_params) do
+#    case LastSheetAssesmentsTSs.update_last_sheet_assesments_ts(socket.assigns.last_sheet_assesments_ts, last_sheet_assesments_ts_params) do
+    case LastSheetAssesmentsTSs.create_last_sheet_assesments_ts(last_sheet_assesments_ts_params) do
       {:ok, _last_sheet_assesments_ts} ->
         {:noreply,
          socket

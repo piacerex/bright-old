@@ -44,6 +44,7 @@ defmodule BasicWeb.LastSheetAssesmentsTSLive.Index do
   end
 
   defp list_last_sheet_assesments_tss do
-    LastSheetAssesmentsTSs.list_last_sheet_assesments_tss()
+#    LastSheetAssesmentsTSs.list_last_sheet_assesments_tss()
+    LastSheetAssesmentsTSs.list_last_sheet_assesments_tss_per_sheet()
   end
 end
