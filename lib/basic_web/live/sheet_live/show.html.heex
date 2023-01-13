@@ -35,4 +35,5 @@
 <span><%= live_redirect "Back", to: Routes.sheet_index_path(@socket, :index) %></span>
 -->
 <span><%= live_patch "編集", to: Routes.sheet_show_path(@socket, :edit, @sheet), class: "button" %></span> |
-<span><%= live_redirect "戻る", to: Routes.sheet_index_path(@socket, :index) %></span>
+<!-- <span><%= live_redirect "戻る", to: Routes.sheet_index_path(@socket, :index) %></span> -->
+<span><a href="" onclick="history.go(-1); return false;">戻る</a></span>
