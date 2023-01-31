@@ -9,15 +9,18 @@
     phx-change="validate"
     phx-submit="save">
   
-<!--    <%= label f, :account_id %> -->
-    <%= label f, :account_id, "アカウントID" %>
-    <%= number_input f, :account_id %>
-    <%= error_tag f, :account_id %>
+    <%= label f, :id, "ID" %>
+    <%= @last_sheet_assesments_ts.id %>
   
 <!--    <%= label f, :sheet_id %> -->
     <%= label f, :sheet_id, "スキルシートID" %>
     <%= number_input f, :sheet_id %>
     <%= error_tag f, :sheet_id %>
+  
+<!--    <%= label f, :account_id %> -->
+    <%= label f, :account_id, "アカウントID" %>
+    <%= number_input f, :account_id %>
+    <%= error_tag f, :account_id %>
   
 <!--    <%= label f, :sheet_learned_rate %> -->
     <%= label f, :sheet_learned_rate, "スキル学習済率" %>

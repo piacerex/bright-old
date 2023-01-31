@@ -26,7 +26,7 @@
       <th>Account committed rate</th>
 -->
       <th>アカウントID</th>
-      <th>最終アセスメントID群</th>
+      <th>最終アセスメント シートID群</th>
       <th>スキル学習済率</th>
       <th>エビデンス完備率</th>
       <th>経験スキル率</th>
@@ -39,7 +39,12 @@
     <%= for last_assesments_ts <- @last_assesments_tss do %>
       <tr id={"last_assesments_ts-#{last_assesments_ts.id}"}>
         <td><%= last_assesments_ts.account_id %></td>
-        <td><%= last_assesments_ts.ts_last_sheet_assesments_ids %></td>
+<!--        <td><%= last_assesments_ts.ts_last_sheet_assesments_ids %></td> -->
+        <td>
+          <%= for last_sheet_assesments_id <- String.split(last_assesments_ts.ts_last_sheet_assesments_ids, ",") do %>
+            <%= live_redirect last_sheet_assesments_id, to: Routes.last_sheet_assesments_ts_show_path(@socket, :show, last_sheet_assesments_id) %>,
+          <% end %>
+        </td>
         <td><%= last_assesments_ts.account_learned_rate %></td>
         <td><%= last_assesments_ts.account_evidence_rate %></td>
         <td><%= last_assesments_ts.account_experienced_rate %></td>

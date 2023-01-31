@@ -25,6 +25,7 @@
       <th>Sheet experienced rate</th>
       <th>Sheet committed rate</th>
 -->
+      <th>ID</th>
       <th>スキルシートID</th>
       <th>アカウントID</th>
       <th>スキル学習済率</th>
@@ -38,6 +39,7 @@
   <tbody id="last_sheet_assesments_tss">
     <%= for last_sheet_assesments_ts <- @last_sheet_assesments_tss do %>
       <tr id={"last_sheet_assesments_ts-#{last_sheet_assesments_ts.id}"}>
+        <td><%= last_sheet_assesments_ts.id %></td>
 <!--        <td><%= last_sheet_assesments_ts.sheet_id %></td> -->
         <td><%= live_redirect last_sheet_assesments_ts.sheet_id, to: Routes.sheet_show_path(@socket, :show, last_sheet_assesments_ts.sheet_id) %></td>
         <td><%= last_sheet_assesments_ts.account_id %></td>
