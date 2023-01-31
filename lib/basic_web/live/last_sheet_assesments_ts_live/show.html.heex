@@ -1,63 +1,76 @@
 <!-- <h1>Show Last sheet assesments ts</h1> -->
 <h1>最終アセスメント集計の詳細</h1>
 
-<%= if @live_action in [:edit] do %>
-  <.modal return_to={Routes.last_sheet_assesments_ts_show_path(@socket, :show, @last_sheet_assesments_ts)}>
-    <.live_component
-      module={BasicWeb.LastSheetAssesmentsTSLive.FormComponent}
-      id={@last_sheet_assesments_ts.id}
-      title={@page_title}
-      action={@live_action}
-      last_sheet_assesments_ts={@last_sheet_assesments_ts}
-      return_to={Routes.last_sheet_assesments_ts_show_path(@socket, :show, @last_sheet_assesments_ts)}
-    />
-  </.modal>
+<%= if @last_sheet_assesments_ts == [] do %>
+  指定されたIDの情報がありません。<br>
+  <%= live_redirect "シート単位の最終アセスメント集計", to: Routes.last_sheet_assesments_ts_index_path(@socket, :index) %>
+  を確認してください。<br>
+
+<% else %>
+  <%= if @live_action in [:edit] do %>
+    <.modal return_to={Routes.last_sheet_assesments_ts_show_path(@socket, :show, @last_sheet_assesments_ts)}>
+      <.live_component
+        module={BasicWeb.LastSheetAssesmentsTSLive.FormComponent}
+        id={@last_sheet_assesments_ts.id}
+        title={@page_title}
+        action={@live_action}
+        last_sheet_assesments_ts={@last_sheet_assesments_ts}
+        return_to={Routes.last_sheet_assesments_ts_show_path(@socket, :show, @last_sheet_assesments_ts)}
+      />
+    </.modal>
+  <% end %>
+
+  <ul>
+
+    <li>
+      <strong>ID:</strong>
+      <%= @last_sheet_assesments_ts.id %>
+    </li>
+
+    <li>
+  <!--    <strong>Sheet:</strong> -->
+      <strong>スキルシートID:</strong>
+      <%= @last_sheet_assesments_ts.sheet_id %>
+    </li>
+
+    <li>
+  <!--    <strong>Account:</strong> -->
+      <strong>アカウントID:</strong>
+      <%= @last_sheet_assesments_ts.account_id %>
+    </li>
+
+    <li>
+  <!--    <strong>Sheet learned rate:</strong> -->
+      <strong>スキル学習済率:</strong>
+      <%= @last_sheet_assesments_ts.sheet_learned_rate %>
+    </li>
+
+    <li>
+  <!--    <strong>Sheet evidence rate:</strong> -->
+      <strong>エビデンス完備率:</strong>
+      <%= @last_sheet_assesments_ts.sheet_evidence_rate %>
+    </li>
+
+    <li>
+  <!--    <strong>Sheet experienced rate:</strong> -->
+      <strong>経験スキル率:</strong>
+      <%= @last_sheet_assesments_ts.sheet_experienced_rate %>
+    </li>
+
+    <li>
+  <!--    <strong>Sheet committed rate:</strong> -->
+      <strong>コミットスキル率:</strong>
+      <%= @last_sheet_assesments_ts.sheet_committed_rate %>
+    </li>
+
+  </ul>
+
+
+  <!--
+  <span><%= live_patch "Edit", to: Routes.last_sheet_assesments_ts_show_path(@socket, :edit, @last_sheet_assesments_ts), class: "button" %></span> |
+  <span><%= live_redirect "Back", to: Routes.last_sheet_assesments_ts_index_path(@socket, :index) %></span>
+  -->
+  <span><%= live_patch "編集", to: Routes.last_sheet_assesments_ts_show_path(@socket, :edit, @last_sheet_assesments_ts), class: "button" %></span> |
+  <!-- <span><%= live_redirect "戻る", to: Routes.last_sheet_assesments_ts_index_path(@socket, :index) %></span> -->
 <% end %>
-
-<ul>
-
-  <li>
-<!--    <strong>Account:</strong> -->
-    <strong>アカウントID:</strong>
-    <%= @last_sheet_assesments_ts.account_id %>
-  </li>
-
-  <li>
-<!--    <strong>Sheet:</strong> -->
-    <strong>スキルシートID:</strong>
-    <%= @last_sheet_assesments_ts.sheet_id %>
-  </li>
-
-  <li>
-<!--    <strong>Sheet learned rate:</strong> -->
-    <strong>スキル学習済率:</strong>
-    <%= @last_sheet_assesments_ts.sheet_learned_rate %>
-  </li>
-
-  <li>
-<!--    <strong>Sheet evidence rate:</strong> -->
-    <strong>エビデンス完備率:</strong>
-    <%= @last_sheet_assesments_ts.sheet_evidence_rate %>
-  </li>
-
-  <li>
-<!--    <strong>Sheet experienced rate:</strong> -->
-    <strong>経験スキル率:</strong>
-    <%= @last_sheet_assesments_ts.sheet_experienced_rate %>
-  </li>
-
-  <li>
-<!--    <strong>Sheet committed rate:</strong> -->
-    <strong>コミットスキル率:</strong>
-    <%= @last_sheet_assesments_ts.sheet_committed_rate %>
-  </li>
-
-</ul>
-
-
-<!--
-<span><%= live_patch "Edit", to: Routes.last_sheet_assesments_ts_show_path(@socket, :edit, @last_sheet_assesments_ts), class: "button" %></span> |
-<span><%= live_redirect "Back", to: Routes.last_sheet_assesments_ts_index_path(@socket, :index) %></span>
--->
-<span><%= live_patch "編集", to: Routes.last_sheet_assesments_ts_show_path(@socket, :edit, @last_sheet_assesments_ts), class: "button" %></span> |
-<span><%= live_redirect "戻る", to: Routes.last_sheet_assesments_ts_index_path(@socket, :index) %></span>
+<span><a href="" onclick="history.go(-1); return false;">戻る</a></span>

@@ -10,10 +10,18 @@ defmodule BasicWeb.LastSheetAssesmentsTSLive.Show do
 
   @impl true
   def handle_params(%{"id" => id}, _, socket) do
-    {:noreply,
-     socket
-     |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:last_sheet_assesments_ts, LastSheetAssesmentsTSs.get_last_sheet_assesments_ts!(id))}
+    case LastSheetAssesmentsTSs.sheet_id_exists(id) do
+      [] ->
+        {:noreply,
+        socket
+        |> assign(:page_title, page_title(socket.assigns.live_action))
+        |> assign(:last_sheet_assesments_ts, [])}
+      _ ->
+        {:noreply,
+        socket
+        |> assign(:page_title, page_title(socket.assigns.live_action))
+        |> assign(:last_sheet_assesments_ts, LastSheetAssesmentsTSs.get_last_sheet_assesments_ts!(id))}
+    end
   end
 
 #  defp page_title(:show), do: "Show Last sheet assesments ts"

@@ -104,9 +104,16 @@ defmodule Basic.LastSheetAssesmentsTSs do
 
   # ADD START
   def list_last_sheet_assesments_tss_per_sheet do
-    query = from( last_sheet_assesments_tss in LastSheetAssesmentsTS,
-                  distinct: [last_sheet_assesments_tss.sheet_id, last_sheet_assesments_tss.account_id],
-                  order_by: [desc: last_sheet_assesments_tss.inserted_at]
+    query = from( last_sheet_assesments_ts in LastSheetAssesmentsTS,
+                  distinct: [last_sheet_assesments_ts.sheet_id, last_sheet_assesments_ts.account_id],
+                  order_by: [desc: last_sheet_assesments_ts.inserted_at]
+                )
+    Repo.all(query)
+  end
+
+  def sheet_id_exists(id) do
+    query = from( last_sheet_assesments_ts in LastSheetAssesmentsTS,
+                  where: last_sheet_assesments_ts.id == ^id
                 )
     Repo.all(query)
   end
